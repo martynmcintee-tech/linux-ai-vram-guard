@@ -1,0 +1,196 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-label="Linux AI Governor and VRAM Guard architecture and telemetry overview">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090D16" />
+      <stop offset="55%" stop-color="#0D1322" />
+      <stop offset="100%" stop-color="#090E1A" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="barHot" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#EF4444" />
+    </linearGradient>
+    <linearGradient id="barClean" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#34D399" />
+    </linearGradient>
+    <pattern id="gridDots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="0.85" fill="#1E293B" opacity="0.65" />
+    </pattern>
+    <marker id="arrowCyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#38BDF8" />
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#F59E0B" />
+    </marker>
+    <marker id="arrowViolet" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#A855F7" />
+    </marker>
+    <marker id="arrowSlate" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#64748B" />
+    </marker>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect x="0" y="0" width="960" height="420" rx="16" fill="url(#bgGrad)" />
+  <rect x="0" y="0" width="960" height="420" rx="16" fill="url(#gridDots)" />
+  <rect x="0.75" y="0.75" width="958.5" height="418.5" rx="15.25" fill="none" stroke="#1E293B" stroke-width="1.5" />
+
+  <!-- Top Header Bar -->
+  <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, sans-serif">
+    <circle cx="32" cy="36" r="5" fill="#10B981" />
+    <circle cx="32" cy="36" r="9" fill="none" stroke="#10B981" stroke-width="1" opacity="0.45" />
+    <text x="48" y="41" fill="#F8FAFC" font-size="16.5" font-weight="700" letter-spacing="0.4">LINUX AI GOVERNOR &amp; VRAM GUARD</text>
+
+    <rect x="366" y="24" width="232" height="24" rx="12" fill="#0C2438" stroke="#0284C7" stroke-width="1" />
+    <text x="482" y="40" text-anchor="middle" fill="#38BDF8" font-size="10.5" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">STDLIB ONLY · NVML FFI · SYSFS</text>
+
+    <rect x="744" y="24" width="188" height="24" rx="12" fill="#06281E" stroke="#059669" stroke-width="1" />
+    <text x="838" y="40" text-anchor="middle" fill="#34D399" font-size="10.5" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">ZERO RESIDUAL IDLE VRAM</text>
+  </g>
+
+  <line x1="28" y1="60" x2="932" y2="60" stroke="#1E293B" stroke-width="1" />
+
+  <!-- ===================================================================== -->
+  <!-- STAGE 01 CARD: Active Agent Detection -> CPU Scaling Governor         -->
+  <!-- ===================================================================== -->
+  <g transform="translate(28, 74)">
+    <rect x="0" y="0" width="504" height="94" rx="10" fill="url(#cardGrad)" stroke="#1E293B" stroke-width="1.2" />
+    <rect x="0" y="10" width="4" height="74" rx="2" fill="#38BDF8" />
+
+    <text x="16" y="22" fill="#38BDF8" font-size="11" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" letter-spacing="0.5">01 · /proc AI AGENT WATCHER</text>
+    <text x="488" y="22" text-anchor="end" fill="#94A3B8" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">intel_pstate · amd-pstate-epp</text>
+
+    <!-- Left Box: Watched Agents -->
+    <rect x="16" y="32" width="208" height="48" rx="7" fill="#090F1C" stroke="#1E3A5F" stroke-width="1" />
+    <text x="26" y="48" fill="#E2E8F0" font-size="10.5" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">claude · codex · cursor</text>
+    <text x="26" y="65" fill="#94A3B8" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">antigravity · hermes · aider</text>
+
+    <!-- Arrow -->
+    <line x1="230" y1="56" x2="268" y2="56" stroke="#38BDF8" stroke-width="1.6" marker-end="url(#arrowCyan)" />
+    <text x="249" y="49" text-anchor="middle" fill="#38BDF8" font-size="9" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">sysfs</text>
+
+    <!-- Right Box: Governor States -->
+    <rect x="276" y="32" width="212" height="48" rx="7" fill="#090F1C" stroke="#1E293B" stroke-width="1" />
+    <circle cx="289" cy="46" r="3.5" fill="#10B981" />
+    <text x="299" y="50" fill="#34D399" font-size="10.5" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">ACTIVE -&gt; performance</text>
+    <circle cx="289" cy="65" r="3.5" fill="#64748B" />
+    <text x="299" y="69" fill="#94A3B8" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">IDLE   -&gt; powersave</text>
+  </g>
+
+  <!-- Vertical Flow Connector 1 -> 2 -->
+  <line x1="280" y1="168" x2="280" y2="184" stroke="#64748B" stroke-width="1.4" stroke-dasharray="3,2" marker-end="url(#arrowSlate)" />
+
+  <!-- ===================================================================== -->
+  <!-- STAGE 02 CARD: llama-server Sleeping Model Eviction                   -->
+  <!-- ===================================================================== -->
+  <g transform="translate(28, 188)">
+    <rect x="0" y="0" width="504" height="94" rx="10" fill="url(#cardGrad)" stroke="#1E293B" stroke-width="1.2" />
+    <rect x="0" y="10" width="4" height="74" rx="2" fill="#F59E0B" />
+
+    <text x="16" y="22" fill="#FBBF24" font-size="11" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" letter-spacing="0.5">02 · LLAMA-SERVER ROUTER GUARD</text>
+    <text x="488" y="22" text-anchor="end" fill="#94A3B8" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">GET /models · 300s sleep</text>
+
+    <!-- Left Box: Sleeping GGUF -->
+    <rect x="16" y="32" width="194" height="48" rx="7" fill="#090F1C" stroke="#452B0B" stroke-width="1" />
+    <text x="26" y="49" fill="#FDE68A" font-size="10.5" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">status: "sleeping"</text>
+    <text x="26" y="66" fill="#94A3B8" font-size="10" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Residual CUDA ctx pinned</text>
+
+    <!-- Arrow -->
+    <line x1="216" y1="56" x2="286" y2="56" stroke="#F59E0B" stroke-width="1.6" marker-end="url(#arrowAmber)" />
+    <text x="251" y="48" text-anchor="middle" fill="#FBBF24" font-size="9" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">POST /unload</text>
+
+    <!-- Right Box: Zero VRAM -->
+    <rect x="294" y="32" width="194" height="48" rx="7" fill="#062019" stroke="#065F46" stroke-width="1" />
+    <text x="306" y="49" fill="#34D399" font-size="10.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">0.00 GiB Model VRAM</text>
+    <text x="306" y="66" fill="#A7F3D0" font-size="10" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">100% CUDA context freed</text>
+  </g>
+
+  <!-- Vertical Flow Connector 2 -> 3 -->
+  <line x1="280" y1="282" x2="280" y2="298" stroke="#64748B" stroke-width="1.4" stroke-dasharray="3,2" marker-end="url(#arrowSlate)" />
+
+  <!-- ===================================================================== -->
+  <!-- STAGE 03 CARD: ComfyUI + Ollama Idle Queue VRAM Reclaimer             -->
+  <!-- ===================================================================== -->
+  <g transform="translate(28, 302)">
+    <rect x="0" y="0" width="504" height="94" rx="10" fill="url(#cardGrad)" stroke="#1E293B" stroke-width="1.2" />
+    <rect x="0" y="10" width="4" height="74" rx="2" fill="#A855F7" />
+
+    <text x="16" y="22" fill="#C084FC" font-size="11" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" letter-spacing="0.5">03 · COMFYUI + NVML IDLE GUARD</text>
+    <text x="488" y="22" text-anchor="end" fill="#94A3B8" font-size="10.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">idle &gt;= 300s &amp; &gt;= 1.5 GiB</text>
+
+    <!-- Left Box: NVML + /queue -->
+    <rect x="16" y="32" width="194" height="48" rx="7" fill="#090F1C" stroke="#3B1D5E" stroke-width="1" />
+    <text x="26" y="49" fill="#E9D5FF" font-size="10.5" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">/queue empty · 300s</text>
+    <text x="26" y="66" fill="#94A3B8" font-size="10" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">NVML PID holds 14.8 GiB</text>
+
+    <!-- Arrow -->
+    <line x1="216" y1="56" x2="286" y2="56" stroke="#A855F7" stroke-width="1.6" marker-end="url(#arrowViolet)" />
+    <text x="251" y="48" text-anchor="middle" fill="#C084FC" font-size="9" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">POST /free</text>
+
+    <!-- Right Box: Freed -->
+    <rect x="294" y="32" width="194" height="48" rx="7" fill="#062019" stroke="#065F46" stroke-width="1" />
+    <text x="306" y="49" fill="#34D399" font-size="10.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Weights + Cache Freed</text>
+    <text x="306" y="66" fill="#A7F3D0" font-size="10" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">unload_models + free_mem</text>
+  </g>
+
+  <!-- ===================================================================== -->
+  <!-- RIGHT PANEL: Live Daemon Telemetry & 24 GiB VRAM Comparison           -->
+  <!-- ===================================================================== -->
+  <g transform="translate(550, 74)">
+    <!-- Terminal Frame -->
+    <rect x="0" y="0" width="382" height="322" rx="10" fill="#060911" stroke="#1E293B" stroke-width="1.2" />
+    <path d="M 0 10 Q 0 0 10 0 L 372 0 Q 382 0 382 10 L 382 30 L 0 30 Z" fill="#0F172A" />
+    <line x1="0" y1="30" x2="382" y2="30" stroke="#1E293B" stroke-width="1" />
+
+    <!-- Window Dots -->
+    <circle cx="16" cy="15" r="4.5" fill="#EF4444" opacity="0.85" />
+    <circle cx="30" cy="15" r="4.5" fill="#F59E0B" opacity="0.85" />
+    <circle cx="44" cy="15" r="4.5" fill="#10B981" opacity="0.85" />
+    <text x="191" y="19" text-anchor="middle" fill="#94A3B8" font-size="10.5" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">ai-vram-guard --status</text>
+
+    <!-- Monospace Telemetry Lines -->
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5">
+      <text x="16" y="50" fill="#38BDF8">$ ai-vram-guard --status</text>
+
+      <text x="16" y="70" fill="#64748B">CPU Scaling :</text>
+      <text x="108" y="70" fill="#E2E8F0">performance (20 threads)</text>
+
+      <text x="16" y="88" fill="#64748B">AI Sessions :</text>
+      <text x="108" y="88" fill="#34D399">ACTIVE (claude, antigravity)</text>
+
+      <text x="16" y="106" fill="#64748B">llama-server:</text>
+      <text x="108" y="106" fill="#FBBF24">sleeping -&gt; unloaded (0.0G)</text>
+
+      <text x="16" y="124" fill="#64748B">ComfyUI     :</text>
+      <text x="108" y="124" fill="#C084FC">idle 300s -&gt; /free (14.8G)</text>
+
+      <line x1="16" y1="139" x2="366" y2="139" stroke="#1E293B" stroke-width="1" />
+
+      <!-- VRAM Before vs After Comparison -->
+      <text x="16" y="158" fill="#94A3B8" font-size="10" font-weight="700" letter-spacing="0.4">24.0 GiB GPU VRAM — IDLE PIPELINE IMPACT</text>
+
+      <!-- Before Bar -->
+      <text x="16" y="180" fill="#FCA5A5" font-size="10">Without Guard (idle LLM + ComfyUI)</text>
+      <text x="366" y="180" text-anchor="end" fill="#F87171" font-size="10" font-weight="700">21.4 / 24.0 GiB</text>
+      <rect x="16" y="187" width="350" height="12" rx="4" fill="#1E293B" />
+      <rect x="16" y="187" width="312" height="12" rx="4" fill="url(#barHot)" />
+
+      <!-- After Bar -->
+      <text x="16" y="221" fill="#A7F3D0" font-size="10">With ai-vram-guard (after 300s idle)</text>
+      <text x="366" y="221" text-anchor="end" fill="#34D399" font-size="10" font-weight="700">0.8 / 24.0 GiB</text>
+      <rect x="16" y="228" width="350" height="12" rx="4" fill="#1E293B" />
+      <rect x="16" y="228" width="14" height="12" rx="4" fill="url(#barClean)" />
+
+      <line x1="16" y1="255" x2="366" y2="255" stroke="#1E293B" stroke-width="1" />
+
+      <!-- Live Daemon Journal Log Tail -->
+      <text x="16" y="274" fill="#38BDF8" font-size="9.8">[AI-Governor] Switched CPU -&gt; 'performance'</text>
+      <text x="16" y="291" fill="#34D399" font-size="9.8">[VRAM-Guard] Unloaded sleeping 'qwen3-coder'</text>
+      <text x="16" y="308" fill="#34D399" font-size="9.8">[VRAM-Guard] Freed 14.80 GiB ComfyUI VRAM</text>
+    </g>
+  </g>
+</svg>

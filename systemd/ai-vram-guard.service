@@ -1,0 +1,16 @@
+[Unit]
+Description=Linux AI Governor & GPU VRAM Auto-Unload Guard
+Documentation=https://github.com/martynmcintee-tech/linux-ai-vram-guard
+After=network.target
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/default/ai-vram-guard
+ExecStart=/usr/bin/python3 /usr/local/bin/ai-vram-guard
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+ProtectHome=read-only
+
+[Install]
+WantedBy=multi-user.target
