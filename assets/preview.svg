@@ -49,7 +49,7 @@
     <text x="482" y="40" text-anchor="middle" fill="#38BDF8" font-size="10.5" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">STDLIB ONLY · NVML FFI · SYSFS</text>
 
     <rect x="744" y="24" width="188" height="24" rx="12" fill="#06281E" stroke="#059669" stroke-width="1" />
-    <text x="838" y="40" text-anchor="middle" fill="#34D399" font-size="10.5" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">ZERO RESIDUAL IDLE VRAM</text>
+    <text x="838" y="40" text-anchor="middle" fill="#34D399" font-size="10.5" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">FREES IDLE GPU VRAM</text>
   </g>
 
   <line x1="28" y1="60" x2="932" y2="60" stroke="#1E293B" stroke-width="1" />
@@ -171,7 +171,7 @@
       <line x1="16" y1="139" x2="366" y2="139" stroke="#1E293B" stroke-width="1" />
 
       <!-- VRAM Before vs After Comparison -->
-      <text x="16" y="158" fill="#94A3B8" font-size="10" font-weight="700" letter-spacing="0.4">24.0 GiB GPU VRAM — IDLE PIPELINE IMPACT</text>
+      <text x="16" y="158" fill="#94A3B8" font-size="10" font-weight="700" letter-spacing="0.4">24.0 GiB GPU VRAM - IDLE PIPELINE USAGE</text>
 
       <!-- Before Bar -->
       <text x="16" y="180" fill="#FCA5A5" font-size="10">Without Guard (idle LLM + ComfyUI)</text>
